@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
   <meta name="description" content="DMI International Logistics — трансграничные расчёты, международные платежи и агентское сопровождение для глобального бизнеса. Китай, ОАЭ, Гонконг, ЕС, СНГ."/>
   <title>DMI International Logistics — Трансграничные расчёты</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -38,8 +38,8 @@
   --ease:         cubic-bezier(.16,1,.3,1);
   --ease-in:      cubic-bezier(.4,0,1,1);
   --container:    1240px;
-  --font-main:    'Plus Jakarta Sans', sans-serif;
-  --font-mono:    'IBM Plex Mono', monospace;
+  --font-main:    'Plus Jakarta Sans', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono:    'IBM Plex Mono', 'Cascadia Code', 'Consolas', 'Courier New', monospace;
 }
 
 /* ── RESET ─────────────────────────────────────────────────── */
@@ -56,6 +56,8 @@ body {
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
   overflow-x: hidden;
   cursor: none;
 }
@@ -92,7 +94,7 @@ input, textarea { font: inherit; }
 .cursor-ring { display: none; }
 .cursor.hover { width: 14px; height: 14px; }
 
-@media (pointer: coarse) { .cursor, .cursor-ring { display: none; } }
+@media (pointer: coarse) { .cursor { display: none; } }
 
 /* ── LAYOUT ─────────────────────────────────────────────────── */
 .wrap {
@@ -241,11 +243,11 @@ input, textarea { font: inherit; }
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  height: 76px;
-  gap: 16px;
+  height: 100px;
+  gap: 24px;
   transition: height .3s var(--ease);
 }
-.header.scrolled .nav-wrap { height: 64px; }
+.header.scrolled .nav-wrap { height: 76px; }
 
 .brand {
   display: flex;
@@ -256,8 +258,8 @@ input, textarea { font: inherit; }
 }
 .brand:hover { opacity: .85; }
 .brand-logo-wrap {
-  width: 120px;
-  height: 38px;
+  width: 168px;
+  height: 52px;
   flex-shrink: 0;
   overflow: visible;
 }
@@ -266,13 +268,14 @@ input, textarea { font: inherit; }
 .brand-text { display: flex; flex-direction: column; line-height: 1.1; }
 .brand-name {
   font-weight: 700;
-  font-size: 15px;
+  font-size: 20px;
   letter-spacing: -.01em;
   color: var(--text);
+  white-space: nowrap;
 }
 .brand-sub {
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--text-faint);
@@ -372,8 +375,11 @@ input, textarea { font: inherit; }
 .hero-canvas {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
   z-index: 0;
   pointer-events: none;
+  display: block;
 }
 .hero-grid-lines {
   position: absolute;
@@ -399,8 +405,8 @@ input, textarea { font: inherit; }
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
+  gap: 40px;
   align-items: center;
   flex: 1;
   padding-top: 40px;
@@ -408,13 +414,13 @@ input, textarea { font: inherit; }
 }
 
 /* Hero copy */
-.hero-copy { max-width: 580px; }
+.hero-copy { max-width: 100%; min-width: 0; }
 
 .hero-h1 {
-  font-size: clamp(44px, 6vw, 76px);
+  font-size: clamp(40px, 4.2vw, 72px);
   font-weight: 800;
-  line-height: 1.02;
-  letter-spacing: -.04em;
+  line-height: 1.08;
+  letter-spacing: -.03em;
   margin: 0 0 28px;
   display: flex;
   flex-direction: column;
@@ -470,7 +476,7 @@ input, textarea { font: inherit; }
 }
 
 /* Dashboard Mockup */
-.hero-visual { position: relative; }
+.hero-visual { position: relative; min-width: 0; }
 
 .float-badge {
   position: absolute;
@@ -530,9 +536,9 @@ input, textarea { font: inherit; }
 }
 .dash-label {
   font-family: var(--font-mono);
-  font-size: 11.5px;
+  font-size: 12px;
   color: var(--text-faint);
-  letter-spacing: .04em;
+  letter-spacing: .03em;
 }
 .dash-dots { display: flex; gap: 6px; }
 .dash-dots i {
@@ -683,11 +689,12 @@ input, textarea { font: inherit; }
   white-space: nowrap;
   animation: ticker 28s linear infinite;
   font-family: var(--font-mono);
-  font-size: 11.5px;
+  font-size: 12px;
   color: var(--text-faint);
-  letter-spacing: .04em;
+  letter-spacing: .03em;
 }
-.ticker-track span:not(.sep) { padding: 4px 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
+.ticker-track span:not(.sep) { padding: 4px 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; display: inline-flex; align-items: center; gap: 6px; }
+.flag-ic { font-family: "Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji","Android Emoji",sans-serif; font-size: 14px; line-height: 1; display: inline-block; }
 .ticker-track .sep { color: var(--line); }
 @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .ticker-track:hover { animation-play-state: paused; }
@@ -700,7 +707,7 @@ input, textarea { font: inherit; }
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 72px;
-  align-items: start;
+  align-items: center;
 }
 .about-left .sec-h2 { margin: 0 0 20px; }
 .about-lead { font-size: 17px; color: var(--text); line-height: 1.7; margin-bottom: 16px; }
@@ -1334,6 +1341,35 @@ input, textarea { font: inherit; }
 }
 .footer-geo span:hover { color: var(--text-dim); border-color: var(--blue); }
 
+
+/* ── DESKTOP FONT BOOST (1061px+) ─────────────────────────── */
+@media (min-width: 1061px) {
+  body { font-size: 17px; }
+  .sec-desc { font-size: 17px; }
+  .hero-lead { font-size: 18px; }
+  .svc-card p { font-size: 14.5px; }
+  .adv-card p { font-size: 14.5px; }
+  .about-body { font-size: 16px; }
+  .about-lead { font-size: 18px; }
+  .feat-card p { font-size: 15px; }
+  .feat-card h4 { font-size: 17px; }
+  .proc-body p { font-size: 14.5px; }
+  .proc-body h4 { font-size: 17px; }
+  .security-desc { font-size: 17px; }
+  .pr-card p { font-size: 14.5px; }
+  .pr-card h4 { font-size: 16px; }
+  .faq-q { font-size: 17px; }
+  .faq-a p { font-size: 16px; }
+  .contact-desc { font-size: 17px; }
+  .ci-val { font-size: 15px; }
+  .fn-col a { font-size: 15px; }
+  .form-card > p { font-size: 15.5px; }
+  .form-card h3 { font-size: 24px; }
+  .svc-card h3 { font-size: 17px; }
+  .adv-card h4 { font-size: 16px; }
+  .res-label { font-size: 13px; }
+}
+
 /* ══════════════════════════════════════════════════════════════
    MAGNETIC BUTTON WRAPPER
 ══════════════════════════════════════════════════════════════ */
@@ -1398,6 +1434,7 @@ input, textarea { font: inherit; }
 
 <!-- ████████████████ CURSOR ████████████████ -->
 <div class="cursor" id="cursor" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
 
 <!-- ████████████████ NAVBAR ████████████████ -->
 <header class="header" id="header">
@@ -1625,7 +1662,7 @@ input, textarea { font: inherit; }
           </div>
           <div class="ds-item">
             <div class="ds-label">Сделок</div>
-            <div class="ds-value ds-value--green">1000+</div>
+            <div class="ds-value ds-value--green">2000+</div>
           </div>
           <div class="ds-item">
             <div class="ds-label">Стран</div>
@@ -1639,28 +1676,28 @@ input, textarea { font: inherit; }
   <!-- Geography ticker -->
   <div class="geo-ticker" aria-label="Географии присутствия" aria-hidden="true">
     <div class="ticker-track">
-      <span>🇨🇳 Китай</span><span class="sep">·</span>
-      <span>🇦🇪 ОАЭ</span><span class="sep">·</span>
-      <span>🇭🇰 Гонконг</span><span class="sep">·</span>
-      <span>🇪🇺 Европейский союз</span><span class="sep">·</span>
-      <span>🇲🇾 Малайзия</span><span class="sep">·</span>
-      <span>🇮🇳 Индия</span><span class="sep">·</span>
-      <span>🇹🇷 Турция</span><span class="sep">·</span>
-      <span>🌏 Юго-Восточная Азия</span><span class="sep">·</span>
-      <span>🌍 СНГ</span><span class="sep">·</span>
-      <span>🇺🇸 США</span><span class="sep">·</span>
-      <span>🌍 Африка</span><span class="sep">·</span>
-      <span>🇨🇳 Китай</span><span class="sep">·</span>
-      <span>🇦🇪 ОАЭ</span><span class="sep">·</span>
-      <span>🇭🇰 Гонконг</span><span class="sep">·</span>
-      <span>🇪🇺 Европейский союз</span><span class="sep">·</span>
-      <span>🇲🇾 Малайзия</span><span class="sep">·</span>
-      <span>🇮🇳 Индия</span><span class="sep">·</span>
-      <span>🇹🇷 Турция</span><span class="sep">·</span>
-      <span>🌏 Юго-Восточная Азия</span><span class="sep">·</span>
-      <span>🌍 СНГ</span><span class="sep">·</span>
-      <span>🇺🇸 США</span><span class="sep">·</span>
-      <span>🌍 Африка</span><span class="sep">·</span>
+      <span><span class="flag-ic">🇨🇳</span>Китай</span><span class="sep">·</span>
+      <span><span class="flag-ic">🇦🇪</span>ОАЭ</span><span class="sep">·</span>
+      <span><span class="flag-ic">🇭🇰</span>Гонконг</span><span class="sep">·</span>
+      <span><span class="flag-ic">🇪🇺</span>Евросоюз</span><span class="sep">·</span>
+      <span><span class="flag-ic">🇲🇾</span>Малайзия</span><span class="sep">·</span>
+      <span><span class="flag-ic">🇮🇳</span>Индия</span><span class="sep">·</span>
+      <span><span class="flag-ic">🇹🇷</span>Турция</span><span class="sep">·</span>
+      <span><span class="flag-ic">🌏</span>Юго-Вост. Азия</span><span class="sep">·</span>
+      <span><span class="flag-ic">🌍</span>СНГ</span><span class="sep">·</span>
+      <span><span class="flag-ic">🇺🇸</span>США</span><span class="sep">·</span>
+      <span><span class="flag-ic">🌍</span>Африка</span><span class="sep">·</span>
+      <span><span class="flag-ic">🇨🇳</span>Китай</span><span class="sep">·</span>
+      <span><span class="flag-ic">🇦🇪</span>ОАЭ</span><span class="sep">·</span>
+      <span><span class="flag-ic">🇭🇰</span>Гонконг</span><span class="sep">·</span>
+      <span><span class="flag-ic">🇪🇺</span>Евросоюз</span><span class="sep">·</span>
+      <span><span class="flag-ic">🇲🇾</span>Малайзия</span><span class="sep">·</span>
+      <span><span class="flag-ic">🇮🇳</span>Индия</span><span class="sep">·</span>
+      <span><span class="flag-ic">🇹🇷</span>Турция</span><span class="sep">·</span>
+      <span><span class="flag-ic">🌏</span>Юго-Вост. Азия</span><span class="sep">·</span>
+      <span><span class="flag-ic">🌍</span>СНГ</span><span class="sep">·</span>
+      <span><span class="flag-ic">🇺🇸</span>США</span><span class="sep">·</span>
+      <span><span class="flag-ic">🌍</span>Африка</span><span class="sep">·</span>
     </div>
   </div>
 </section>
@@ -2311,50 +2348,52 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   const canvas = $('#heroCanvas');
   if (!canvas || prefersReducedMotion) return;
   const ctx = canvas.getContext('2d');
-  let W, H, nodes = [], animId;
+  let W, H, pts = [], animId;
   const isMobile = () => window.innerWidth < 800;
 
-  class Node {
-    constructor() { this.reset(true); }
-    reset(init = false) {
-      this.x = Math.random() * W;
-      this.y = init ? Math.random() * H : H + 20;
-      this.vx = (Math.random() - .5) * .3;
-      this.vy = -(Math.random() * .4 + .1);
-      this.r = Math.random() * 1.5 + .5;
-      this.alpha = Math.random() * .4 + .05;
-      this.life = 0;
-      this.maxLife = Math.random() * 600 + 400;
+  // Точка: равномерно по всему экрану, очень медленный дрейф
+  class Pt {
+    constructor() { this.place(true); }
+    place(scatter) {
+      this.x  = Math.random() * W;
+      this.y  = Math.random() * H;
+      const a = Math.random() * Math.PI * 2;
+      const s = 0.06 + Math.random() * 0.10; // очень медленно
+      this.vx = Math.cos(a) * s;
+      this.vy = Math.sin(a) * s;
+      this.r  = 0.8 + Math.random() * 1.2;
+      this.alpha = 0.12 + Math.random() * 0.20;
     }
     update() {
       this.x += this.vx;
       this.y += this.vy;
-      this.life++;
-      if (this.life > this.maxLife || this.y < -20) this.reset();
+      if (this.x < -20) this.x = W + 20;
+      if (this.x > W + 20) this.x = -20;
+      if (this.y < -20) this.y = H + 20;
+      if (this.y > H + 20) this.y = -20;
     }
     draw() {
-      const fade = Math.min(1, Math.min(this.life, this.maxLife - this.life) / 60);
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(91,149,245,${this.alpha * fade})`;
+      ctx.fillStyle = `rgba(91,149,245,${this.alpha})`;
       ctx.fill();
     }
   }
 
-  function drawConnections() {
-    const maxDist = 120;
-    for (let i = 0; i < nodes.length; i++) {
-      for (let j = i + 1; j < nodes.length; j++) {
-        const dx = nodes[i].x - nodes[j].x;
-        const dy = nodes[i].y - nodes[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < maxDist) {
-          const alpha = (1 - dist / maxDist) * .06;
+  function drawLines() {
+    const MAX = 180; // длиннее линии, реже пересечения
+    for (let i = 0; i < pts.length; i++) {
+      for (let j = i + 1; j < pts.length; j++) {
+        const dx = pts[i].x - pts[j].x;
+        const dy = pts[i].y - pts[j].y;
+        const d  = dx * dx + dy * dy;
+        if (d < MAX * MAX) {
+          const a = (1 - Math.sqrt(d) / MAX) * 0.055;
           ctx.beginPath();
-          ctx.moveTo(nodes[i].x, nodes[i].y);
-          ctx.lineTo(nodes[j].x, nodes[j].y);
-          ctx.strokeStyle = `rgba(62,114,214,${alpha})`;
-          ctx.lineWidth = .5;
+          ctx.moveTo(pts[i].x, pts[i].y);
+          ctx.lineTo(pts[j].x, pts[j].y);
+          ctx.strokeStyle = `rgba(62,114,214,${a})`;
+          ctx.lineWidth = 0.5;
           ctx.stroke();
         }
       }
@@ -2362,26 +2401,36 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   }
 
   function resize() {
-    W = canvas.width = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
-    const count = isMobile() ? 20 : 55;
-    nodes = Array.from({ length: count }, () => new Node());
+    // Берём размер секции hero, а не самого canvas
+    const hero = canvas.parentElement;
+    W = canvas.width  = hero ? hero.offsetWidth  : window.innerWidth;
+    H = canvas.height = hero ? hero.offsetHeight : window.innerHeight;
+    const count = isMobile() ? 28 : 70;
+    pts = Array.from({ length: count }, () => new Pt());
   }
 
   function loop() {
     ctx.clearRect(0, 0, W, H);
-    if (!isMobile()) drawConnections();
-    nodes.forEach(n => { n.update(); n.draw(); });
+    drawLines();
+    pts.forEach(p => { p.update(); p.draw(); });
     animId = raf(loop);
   }
 
-  resize();
-  window.addEventListener('resize', resize, { passive: true });
-  loop();
+  // Дать DOM время отрисоваться, потом замерить размер
+  setTimeout(() => {
+    resize();
+    loop();
+  }, 50);
+
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(animId);
+    resize();
+    loop();
+  }, { passive: true });
 
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) { cancelAnimationFrame(animId); }
-    else loop();
+    if (document.hidden) cancelAnimationFrame(animId);
+    else { resize(); loop(); }
   });
 })();
 
@@ -2391,9 +2440,11 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 (function initCursor() {
   if (prefersReducedMotion || window.matchMedia('(pointer: coarse)').matches) return;
   const cursor = $('#cursor');
-  if (!cursor) return;
+  const ring = $('#cursorRing');
+  if (!cursor || !ring) return;
 
   let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+  let rx = mx, ry = my;
 
   document.addEventListener('mousemove', e => {
     mx = e.clientX; my = e.clientY;
@@ -2401,20 +2452,36 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
     cursor.style.top = my + 'px';
   }, { passive: true });
 
+  function lerpRing() {
+    rx += (mx - rx) * .12;
+    ry += (my - ry) * .12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    raf(lerpRing);
+  }
+  raf(lerpRing);
+
   // Hover state
   const hoverTargets = 'a, button, [data-magnetic], .svc-card, .adv-card, .feat-card, .proc-card, .faq-q';
   document.addEventListener('mouseover', e => {
-    if (e.target.closest(hoverTargets)) cursor.classList.add('hover');
+    if (e.target.closest(hoverTargets)) {
+      cursor.classList.add('hover');
+      ring.classList.add('hover');
+    }
   });
   document.addEventListener('mouseout', e => {
-    if (e.target.closest(hoverTargets)) cursor.classList.remove('hover');
+    if (e.target.closest(hoverTargets)) {
+      cursor.classList.remove('hover');
+      ring.classList.remove('hover');
+    }
   });
 
   document.addEventListener('mousedown', () => { cursor.style.transform = 'translate(-50%,-50%) scale(.7)'; });
   document.addEventListener('mouseup', () => { cursor.style.transform = 'translate(-50%,-50%) scale(1)'; });
 
-  document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; });
-  document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; });
+  // Hide when leaving window
+  document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; ring.style.opacity = '0'; });
+  document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; ring.style.opacity = '1'; });
 })();
 
 /* ══════════════════════════════════════════════════════════════
